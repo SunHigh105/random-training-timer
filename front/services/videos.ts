@@ -26,8 +26,8 @@ export const registVideos = async (videos?: Array<Video>) => {
   }
 };
 
-const getVideoPlaylist = async (playlistId?: string) => {
-  const instance = createAxiosInstance();
+export const getVideoPlaylist = async (playlistId?: string, optionConfig?: ApiConfig) => {
+  const instance = createAxiosInstance(optionConfig);
   try {
     const res = await instance.get(`/api/get_video_playlist/${playlistId}`);
     return res.data;

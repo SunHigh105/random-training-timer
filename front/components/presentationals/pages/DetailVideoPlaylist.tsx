@@ -19,8 +19,8 @@ export const DetailVideoPlaylist: FC<DetailVideoPlaylistProps> = ({
     <Header as='h2'>Video Playlist Detail</Header>
     <Header as='h3'>{ playlist.name }</Header>
     <Item.Group divided>
-      {videos.map(video => (
-        <Item>
+      {videos.map((video, i) => (
+        <Item key={i}>
           <Item.Content>
             {/* <Item.Image /> */}
             <Item.Header>{ video.name }</Item.Header>
@@ -29,7 +29,6 @@ export const DetailVideoPlaylist: FC<DetailVideoPlaylistProps> = ({
             </Item.Meta>
           </Item.Content>
         </Item>
-
       ))}
     </Item.Group>
   </div>
