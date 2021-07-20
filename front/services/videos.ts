@@ -26,28 +26,28 @@ export const registVideos = async (videos?: Array<Video>) => {
   }
 };
 
-// export const getVideoPlaylist = async (playlistId?: string) => {
-//   const instance = createAxiosInstance();
-//   try {
-//     const res = await instance.get(`/api/get_video_playlist/${playlistId}`);
-//     return res.data;
-
-//   } catch (e) {
-//     return failedResponse;
-//   }
-// };
-
-export const getVideoPlaylistFactory = () => {
+const getVideoPlaylist = async (playlistId?: string) => {
   const instance = createAxiosInstance();
-  const getVideoPlaylist = async (playlistId?: string) => {
-    try {
-      const res = await instance.get(`/api/get_video_playlist/${playlistId}`);
-      return res.data;
-  
-    } catch (e) {
-      return failedResponse;
-    }
-  };
+  try {
+    const res = await instance.get(`/api/get_video_playlist/${playlistId}`);
+    return res.data;
 
-  return getVideoPlaylist;
-}
+  } catch (e) {
+    return failedResponse;
+  }
+};
+
+// export const getVideoPlaylistFactory = () => {
+//   const instance = createAxiosInstance();
+//   const getVideoPlaylist = async (playlistId?: string) => {
+//     try {
+//       const res = await instance.get(`/api/get_video_playlist/${playlistId}`);
+//       return res.data;
+  
+//     } catch (e) {
+//       return failedResponse;
+//     }
+//   };
+
+//   return getVideoPlaylist;
+// }

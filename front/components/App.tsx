@@ -53,7 +53,7 @@ export const App: FC<AppProps> = ({
             {!isLoggedIn ? <Redirect to="/signin" /> : <RegistVideoPlaylistContaniner userId={user.user_id} />}
           </Route>
           <Route path='/detail/video_playlist/:playlistId'>
-            <DetailVideoPlaylistContaniner />
+            <DetailVideoPlaylistContaniner isLoggedIn={isLoggedIn} userId={user.user_id} />
           </Route>
           <Route path='/mypage'>
             {!isLoggedIn ? <Redirect to="/signin" /> : <MyPage />}
