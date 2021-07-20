@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { Menu, Container, Input } from 'semantic-ui-react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect, useParams } from "react-router-dom";
-import { Home } from './presentationals/pages/Home';
-import { Search } from './presentationals/pages/Search';
+import { Menu, Container } from 'semantic-ui-react';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { HomeContainer } from './containers/HomeContainer';
+import { PlayContainer } from './containers/PlayContainer';
 import { MyPage } from './presentationals/pages/MyPage';
 import { SigninContainer } from '../components/containers/Signin';
 import { Signup } from './presentationals/pages/Signup';
@@ -29,7 +29,6 @@ export const App: FC<AppProps> = ({
         { isLoggedIn ?
           (
             <Menu.Menu position='right'>
-              <Input icon='search' placeholder='Search...' />
               <Menu.Item as={Link} to='/regist/video_playlist'>Regist</Menu.Item>
               <Menu.Item as={Link} to='/mypage'>MyPage</Menu.Item>
               <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
@@ -38,7 +37,6 @@ export const App: FC<AppProps> = ({
           :
           (
             <Menu.Menu position='right'>
-              <Input icon='search' placeholder='Search...' />
               <Menu.Item as={Link} to='/signin'>Signin</Menu.Item>
               <Menu.Item as={Link} to='/signup'>Signup</Menu.Item>
             </Menu.Menu>
@@ -47,8 +45,8 @@ export const App: FC<AppProps> = ({
       </Menu>
       <Container text style={{ marginTop: '2em' }}>
         <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/search' component={Search} />
+          <Route path='/' exact component={HomeContainer} />
+          <Route path='/play/:categoryId' component={PlayContainer} />
           <Route path='/regist/video_playlist'>
             {!isLoggedIn ? <Redirect to="/signin" /> : <RegistVideoPlaylistContaniner userId={user.user_id} />}
           </Route>

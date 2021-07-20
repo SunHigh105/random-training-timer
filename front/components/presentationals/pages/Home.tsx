@@ -1,35 +1,37 @@
 import React from 'react';
-import { Header, Pagination, Container, Comment } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Header, Container, Select, Form, Grid, Button } from 'semantic-ui-react';
+import * as settings from '../../../constants/home';
 
 export const Home = () => (
   <div>
-    <Header as='h2'>Home</Header>
+    <Header as='h2'>Random Training Playlis</Header>
     <Container>
-      <Comment.Group>
-        <Comment>
-          <Comment.Avatar as='a' src='/images/avatar/minisheep.png' />
-          <Comment.Content>
-            <Comment.Author>Sazanami</Comment.Author>
-            <Comment.Metadata>
-              2021/02/03 21:02
-            </Comment.Metadata>
-            <Comment.Text>
-              Hey guys, I hope this example comment is helping you read this
-              documentation.
-            </Comment.Text>
-          </Comment.Content>
-        </Comment>
-      </Comment.Group>
+      <Form>
+        <Form.Field>
+          <label>Category</label>
+          <Select placeholder='Select' options={[{key: '1', value: '有酸素', text: '有酸素'}]} />
+        </Form.Field>
+        <Form.Field>
+          <label>Total Training Time (minutes)</label>
+          <Select placeholder='Select' options={settings.totalTrainingTime} />
+        </Form.Field>
+        <Form.Field>
+          <label>Per Training/Break Time (seconds)</label>
+          <Grid columns={2}>
+            <Grid.Column>
+              <label>Training</label>{' '}
+              <Select placeholder='Select' options={settings.trainingTime} />
+            </Grid.Column>
+            <Grid.Column>
+              <label>Break</label>{' '}
+              <Select placeholder='Select' options={settings.breakTime} />
+            </Grid.Column>
+          </Grid>
+        </Form.Field>
+        <Form.Field>
+          <Button content='Training Start!' primary />
+        </Form.Field>
+      </Form>
     </Container>
-    <Pagination
-      defaultActivePage={1}
-      firstItem={null}
-      lastItem={null}
-      pointing
-      secondary
-      totalPages={3}
-      position='center'
-    />
   </div>
 );
