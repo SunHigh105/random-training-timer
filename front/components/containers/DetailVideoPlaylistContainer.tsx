@@ -8,20 +8,23 @@ export interface DetailVideoPlaylistContainerProps {
   userId?: number | string,
 }
 
-export const DetailVideoPlaylistContaniner: FC<DetailVideoPlaylistContainerProps> = async ({
+export const DetailVideoPlaylistContaniner: FC<DetailVideoPlaylistContainerProps> = ({
   isLoggedIn = false,
   userId = '',
 }) => {
   const params = useParams();
   const [playlist, setPlaylist] = useState({});
   const [videos, setVideos] = useState([]);
-  
-  const playlistInfo = await getVideoPlaylist(params.playlistId);
-  console.log(playlistInfo);
-  setPlaylist({ ...playlistInfo.playlist[0] });
-  setVideos([ ...playlistInfo.videos ]);
-  console.log(playlist);
-  console.log(videos);
+
+  const getPlaylistInfo = async () => {
+    const playlistInfo = await getVideoPlaylist(params.playlistId);
+    setPlaylist({ ...playlistInfo.playlist[0] });
+    setVideos([ ...playlistInfo.videos ]);
+  }
+
+  useEffect(() => {
+    getPlaylistInfo();
+  }, []);
 
   return (
     <DetailVideoPlaylist 
