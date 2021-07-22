@@ -9,3 +9,5 @@ const createSelectOptions = (arr: Array<number>) => {
 export const totalTrainingTime = createSelectOptions([ 3, 5, 10 ]);
 export const trainingTime = createSelectOptions([ 30, 60 ]);
 export const breakTime = createSelectOptions([ 10, 20 ]);
+
+export const trainingInfoItems = ['categoryId', 'totalTrainingTime', 'trainingTime', 'breakTime'];

@@ -3,55 +3,59 @@ import { Home } from "../presentationals/pages/Home";
 
 import { getAllCategories } from "../../services/trainings";
 import { Category, selectCategoryItem } from "../../services/models";
+import { trainingInfoItems } from '../../constants/home';
+import { useHistory } from "react-router";
 
 export const HomeContainer: FC = () => {
-  // todo:
-  // ・フォームからカテゴリID,トレーニング時間,休憩時間を取得
-  // ・ボタン押下のタイミングで上記の取得した値をstateに格納？
-  // ・/play/:categoryIdにURLを切り替え(or遷移)
   const [categories, setCategories] = useState([]);
-  
+  const [trainingInfo, setTrainingInfo] = useState({});
+  let history = useHistory();
+
   const getAllCategoriesInfo = async () => {
     const response = await getAllCategories();
     response.map((item: Category) => {
-      setCategories((prevValue: Array<selectCategoryItem>) => ([
-        ...prevValue,
-        {
-          key: item.id,
-          value: item.id,
-          text: item.name,
-        }
-      ]));
+      setCategories((prevValue: Array<selectCategoryItem>) => (
+        [
+          ...prevValue,
+          {
+            key: item.id,
+            value: item.id,
+            text: item.name,
+          }
+        ]
+      ));
     });
   }
 
-  const handleCategoryId = (categoryId: number) => {
-    console.log(categoryId);
-  };
-
-  const handleTotalTrainingTime = (time: number) => {
-    console.log(time);
-  };
-
-  const handlePerTrainingTime = (time: number) => {
-    console.log(time);
-  };
-
-  const handlePerBreakTime = (time: number) => {
-    console.log(time);
-  };
+  const handleTrainingInfo = (key: string, value: number) => {
+    setTrainingInfo(info => ({ ...info, [key]: value }));
+  }
 
   useEffect(() => {
     getAllCategoriesInfo();
   }, []);
 
+  const handlePlay = () => {
+    let isError = false;
+    trainingInfoItems.map(item => {
+      if (!(item in trainingInfo)) {
+        isError = true;
+      }
+    });
+
+    if (isError) {
+      alert('Please select all items');
+      return;
+    }
+  
+    history.push(`/play/category/${trainingInfo.categoryId}/total/${trainingInfo.totalTrainingTime}/per_time/${trainingInfo.trainingTime}/per_break/${trainingInfo.breakTime}`);
+  };
+
   return (
     <Home
       categories={categories}
-      handleCateogryId={handleCategoryId}
-      handleTotalTrainingTime={handleTotalTrainingTime}
-      handlePerTrainingTime={handlePerTrainingTime}
-      handlePerBreakTime={handlePerBreakTime}
+      handleTrainingInfo={handleTrainingInfo}
+      handlePlay={handlePlay}
     />
   );
 };
