@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Menu, Container } from 'semantic-ui-react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import { HomeContainer } from './containers/HomeContainer';
-import { PlayContainer } from './containers/PlayContainer';
+import { HomeContainer } from './containers/Home';
+import { PlayContainer } from './containers/Play';
 import { MyPage } from './presentationals/pages/MyPage';
 import { SigninContainer } from '../components/containers/Signin';
 import { Signup } from './presentationals/pages/Signup';

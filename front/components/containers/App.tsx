@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from 'react';
 import { getUser, logout } from '../../services/signin';
-import { App } from '../../components/App';
+import { App } from '../App';
 
 export const AppContainer: FC =() => {
   const [user, setUser] = useState({ user_id: '', name: '' });

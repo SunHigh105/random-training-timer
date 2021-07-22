@@ -1,14 +1,11 @@
 import React, { FC, FormEvent } from 'react';
 import { Header, Container, Form, Button, } from 'semantic-ui-react';
-// import { Trainings } from '../../../services/models';
 
 export interface RegistTrainingsProps {
   handleCategory?: (targetName: string, newValue: string | boolean) => void;
   handleTrainingNames?: (num: number, newValue: string) => void;
   handleTrainingDescriptions?: (num: number, newValue: string) => void;
   handleRegist?: (event: FormEvent<HTMLFormElement>) => void;
-  // playlist?: Trainings,
-  // userId?: number,
 }
 
 export const RegistTrainings: FC<RegistTrainingsProps> = ({
@@ -16,8 +13,6 @@ export const RegistTrainings: FC<RegistTrainingsProps> = ({
   handleTrainingNames = () => {},
   handleTrainingDescriptions = () => {},
   handleRegist = () => {},
-  // playlist = { name: '', is_public: true },
-  // userId = ''
 }) => (
   <div>
     <Header as='h2'>Regist Trainings</Header>
@@ -30,7 +25,6 @@ export const RegistTrainings: FC<RegistTrainingsProps> = ({
             name="name"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleCategory('name', String(e.target.value))}
           />
-          {/* <input type="hidden" value={userId} /> */}
         </Form.Field>
         <Form.Field>          
           <label>Public</label>

@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('regist_category', 'App\Http\Controllers\TrainingController@registCategory');
 Route::post('regist_trainings', 'App\Http\Controllers\TrainingController@registTrainings');
 Route::get('get_category_and_trainings/{id}', 'App\Http\Controllers\TrainingController@getCategoryAndTrainings');
+Route::get('get_all_categories', 'App\Http\Controllers\TrainingController@getAllCategories');
 
 Route::post('login', 'App\Http\Controllers\Api\Auth\LoginController@login');
 Route::get('logout', 'App\Http\Controllers\Api\Auth\LoginController@logout');

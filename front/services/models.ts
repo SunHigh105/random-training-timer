@@ -3,19 +3,8 @@ export interface User {
   password: string;
 }
 
-export interface VideoPlaylist {
-  name: string;
-  user_id: number;
-  is_public: boolean;
-}
-
-export interface Video {
-  name: string;
-  playlist_id: number;
-  url: string;
-}
-
 export interface Category {
+  id: number;
   name: string;
   user_id: number;
   is_public: boolean;
@@ -26,3 +15,9 @@ export interface Training {
   category_id: number;
   description: string;
 }
+
+export interface selectCategoryItem {
+  key: number;
+  value: number;
+  text: string;
+};

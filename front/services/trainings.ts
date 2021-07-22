@@ -36,3 +36,14 @@ export const getCategoryAndTrainings = async (categoryId?: string, optionConfig?
     return failedResponse;
   }
 };
+
+export const getAllCategories = async (optionConfig?: ApiConfig) => {
+  const instance = createAxiosInstance(optionConfig);
+  try {
+    const res = await instance.get('/api/get_all_categories');
+    return res.data;
+
+  } catch (e) {
+    return failedResponse;
+  }
+};

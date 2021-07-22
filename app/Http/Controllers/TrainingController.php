@@ -49,4 +49,9 @@ class TrainingController extends Controller
     {
         return DB::table('categories')->orderBy('id', 'desc')->first()->id;
     }
+
+    public function getAllCategories()
+    {
+        return DB::table('categories')->where('is_public', true)->get();
+    }
 }
