@@ -6,8 +6,8 @@ import { PlayContainer } from './containers/PlayContainer';
 import { MyPage } from './presentationals/pages/MyPage';
 import { SigninContainer } from '../components/containers/Signin';
 import { Signup } from './presentationals/pages/Signup';
-import { RegistVideoPlaylistContaniner } from './containers/RegistVideoPlaylist';
-import { DetailVideoPlaylistContaniner } from './containers/DetailVideoPlaylistContainer';
+import { RegistTrainingsContaniner } from './containers/RegistTrainings';
+import { DetailTrainingContaniner } from './containers/DetailTraining';
 
 export interface AppProps {
   user?: { user_id: string, name: string },
@@ -29,7 +29,7 @@ export const App: FC<AppProps> = ({
         { isLoggedIn ?
           (
             <Menu.Menu position='right'>
-              <Menu.Item as={Link} to='/regist/video_playlist'>Regist</Menu.Item>
+              <Menu.Item as={Link} to='/regist/trainings'>Regist</Menu.Item>
               <Menu.Item as={Link} to='/mypage'>MyPage</Menu.Item>
               <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
             </Menu.Menu>
@@ -47,11 +47,11 @@ export const App: FC<AppProps> = ({
         <Switch>
           <Route path='/' exact component={HomeContainer} />
           <Route path='/play/:categoryId' component={PlayContainer} />
-          <Route path='/regist/video_playlist'>
-            {!isLoggedIn ? <Redirect to="/signin" /> : <RegistVideoPlaylistContaniner userId={user.user_id} />}
+          <Route path='/regist/trainings'>
+            {!isLoggedIn ? <Redirect to="/signin" /> : <RegistTrainingsContaniner userId={user.user_id} />}
           </Route>
-          <Route path='/detail/video_playlist/:playlistId'>
-            <DetailVideoPlaylistContaniner isLoggedIn={isLoggedIn} userId={user.user_id} />
+          <Route path='/detail/training/:categoryId'>
+            <DetailTrainingContaniner isLoggedIn={isLoggedIn} userId={user.user_id} />
           </Route>
           <Route path='/mypage'>
             {!isLoggedIn ? <Redirect to="/signin" /> : <MyPage />}

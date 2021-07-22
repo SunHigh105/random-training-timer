@@ -14,3 +14,15 @@ export interface Video {
   playlist_id: number;
   url: string;
 }
+
+export interface Category {
+  name: string;
+  user_id: number;
+  is_public: boolean;
+}
+
+export interface Training {
+  name: string;
+  category_id: number;
+  description: string;
+}
