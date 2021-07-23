@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { Header, Container } from 'semantic-ui-react';
 
-export const Play = () => (
+export interface playProps {
+  timer: string;
+  circleDasharray: string;
+}
+
+export const Play: FC<playProps> = ({
+  timer = '',
+  circleDasharray = '',
+}) => (
   <div>
     <Header as='h2'>Training</Header>
     <Header as='h3' textAlign='center'>Now: スクワット</Header>
@@ -17,7 +25,7 @@ export const Play = () => (
         </g>
         <path
           id="base-timer-path-remaining"
-          strokeDasharray="283"
+          strokeDasharray={circleDasharray}
           className="base-timer__path-remaining"
           d="
             M 50, 50
@@ -29,7 +37,7 @@ export const Play = () => (
       </svg>
       <span id="base-timer-label" className="base-timer__label">
         {/* Remaining time label */}
-        0:30
+        {timer}
       </span>
     </div>
   </div>
