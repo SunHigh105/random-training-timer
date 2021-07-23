@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Api\Auth;
-// namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -38,11 +37,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        logger(Auth::user());
         Auth::logout();
-        logger(Auth::user());
-        // Auth::user()->tokens()->where('name', 'token-name')->delete();
-        
         return response()->json([
             'result' => true,
             'status' => 200,

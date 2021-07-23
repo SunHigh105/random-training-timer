@@ -1,7 +1,6 @@
-import React, { useState, useEffect, FC, FormEvent, SyntheticEvent } from 'react';
-import { getUser, signin, logout } from '../../services/signin';
+import React, { useState, FC, FormEvent } from 'react';
+import { signin } from '../../services/signin';
 import { Signin } from '../presentationals/pages/Signin';
-import { ApiConfig } from '../../services/common';
 
 export const SigninContainer: FC = () => {
   const [values, setValues] = useState({ email: '', password: '' });

@@ -3,14 +3,21 @@ export interface User {
   password: string;
 }
 
-export interface VideoPlaylist {
+export interface Category {
+  id: number;
   name: string;
   user_id: number;
   is_public: boolean;
 }
 
-export interface Video {
+export interface Training {
   name: string;
-  playlist_id: number;
-  url: string;
+  category_id: number;
+  description: string;
 }
+
+export interface selectCategoryItem {
+  key: number;
+  value: number;
+  text: string;
+};

@@ -1,5 +1,4 @@
-import { createAxiosInstance } from "./common";
-import { ApiConfig } from "./common";
+import { ApiConfig, createAxiosInstance } from "./common";
 import { User } from './models';
 
 export interface SigninFormParams {

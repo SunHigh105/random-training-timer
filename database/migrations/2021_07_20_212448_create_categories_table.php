@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVideoPlaylistsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateVideoPlaylistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('video_playlists', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('user_id');
@@ -29,6 +29,6 @@ class CreateVideoPlaylistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('video_playlists');
+        Schema::dropIfExists('categories');
     }
 }
