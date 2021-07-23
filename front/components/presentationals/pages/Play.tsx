@@ -4,19 +4,21 @@ import { Header, Container } from 'semantic-ui-react';
 export interface playProps {
   timer: string;
   circleDasharray: string;
+  currentTrainingInfo: object;
 }
 
 export const Play: FC<playProps> = ({
   timer = '',
   circleDasharray = '',
+  currentTrainingInfo = {},
 }) => (
   <div>
     <Header as='h2'>Training</Header>
-    <Header as='h3' textAlign='center'>Now: スクワット</Header>
+    <Header as='h3' textAlign='center'>Now: {currentTrainingInfo.currentMenu}</Header>
     <Container textAlign='center'>
-      <p>お尻をちゃんと落とす 膝が爪先より前に出ないように！</p>
+      <p>{currentTrainingInfo.description}</p>
     </Container>
-    <Header as='h3' textAlign='center'>Next: 休憩</Header>
+    <Header as='h3' textAlign='center'>Next: {currentTrainingInfo.nextMenu}</Header>
     {/* cf. https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/ */}
     <div className="base-timer">
       <svg className="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">

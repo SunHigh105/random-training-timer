@@ -3,6 +3,8 @@ import { useHistory, useParams } from "react-router";
 
 import { Play, playProps } from "../presentationals/pages/Play";
 import { getCategoryAndTrainings } from '../../services/trainings';
+import { Training } from "../../services/models";
+import { ItemMeta } from "semantic-ui-react";
 
 export interface playParams {
   categoryId: string;
@@ -17,12 +19,23 @@ export const PlayContainer: FC = () => {
 
   const [timer, setTimer] = useState('');
   const [circleDasharray, setCircleDasharray] = useState('');
+  const [currentTrainingInfo, setCurrentTrainingInfo] = useState({});
 
-  const TIME_LIMIT = Number(params.trainingTime);
+  const menuList = [];
+
+  const TRAINING_TIME = Number(params.trainingTime); // todo
+  const BREAK_TIME = Number(params.breakTime);
   const FULL_DASH_ARRAY = 283;
-  let timerInterval: number;
-  let timePassed = 0;
-  let timeLeft = TIME_LIMIT;
+
+  const shuffleTrainingsSort = (trainings: Array<Training>) => {
+    for (let i = trainings.length - 1; i >= 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [trainings[i], trainings[j]] = [trainings[j], trainings[i]];
+    }
+    return trainings;
+  };
+
+  const sleepTime = (ms: number) => new Promise(res => setTimeout(res, ms));
 
   const getTrainingInfo = async () => {
     const response = await getCategoryAndTrainings(params.categoryId);
@@ -32,7 +45,18 @@ export const PlayContainer: FC = () => {
       history.push('/');
       return;
     }
-    console.log(response);
+    // 休憩時間を含めたリストを作成
+    shuffleTrainingsSort(response.trainings).map((item: Training, i: number) => {
+      if (i === 0) {
+        menuList.push({currentMenu: '開始前', description: '', time: 3});
+      }
+      menuList.push({currentMenu: item.name, description: item.description, time: TRAINING_TIME});
+      if (i !== response.trainings.length - 1) {
+        menuList.push({currentMenu: '休憩', description: '', time: BREAK_TIME});
+      }
+    });
+
+    await playAllTrainings();
   }
 
   const formatTime = (time: number) => {
@@ -42,23 +66,22 @@ export const PlayContainer: FC = () => {
 
     return `${minutes}:${stringSeconds}`;
   }
-
-  const calculateTimeFraction = () => {
-    return timeLeft / TIME_LIMIT;
-  }
   
-  const setCircleDasharrayOnTimer = () => {
+  const setCircleDasharrayOnTimer = (timeLeft: number, trainingTime: number) => {
     setCircleDasharray(`${(
-      calculateTimeFraction() * FULL_DASH_ARRAY
+      timeLeft / trainingTime * FULL_DASH_ARRAY
     ).toFixed(0)} ${FULL_DASH_ARRAY}`);
   }
 
-  const startTimer = () => {
+  const startTimer = (trainingTime: number) => {
+    let timerInterval = null;
+    let timePassed = 0;
+    let timeLeft = trainingTime;
     timerInterval = setInterval(() => {
       timePassed += 1;
-      timeLeft = TIME_LIMIT - timePassed;
+      timeLeft = trainingTime - timePassed;
       setTimer(formatTime(timeLeft));
-      setCircleDasharrayOnTimer();
+      setCircleDasharrayOnTimer(timeLeft, trainingTime);
       
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
@@ -66,19 +89,30 @@ export const PlayContainer: FC = () => {
     }, 1000);
   }
 
+  const playAllTrainings = async () => {
+    // menuListをmapで回すとうまくいかず
+    for (let i = 0; i < menuList.length; i++) {
+        setCurrentTrainingInfo({
+          currentMenu: menuList[i].currentMenu,
+          description: menuList[i].description,
+          nextMenu: menuList[i + 1] ? menuList[i + 1].currentMenu : '',
+        });
+        startTimer(menuList[i].time);
+        await sleepTime((menuList[i].time + 1) * 1000);
+    }
+  }
+
   useEffect(() => {
     getTrainingInfo();
-    startTimer();
   }, []);
 
-  // トレーニング時間,休憩時間,トレーニング一覧を元にプレイリストの配列を生成
-  // タイマー機能
   // トレニーニングが終わったら何かメッセージ出す
-  
+ 
   return (
     <Play 
       timer={timer}
       circleDasharray={circleDasharray}
+      currentTrainingInfo={currentTrainingInfo}
     />
   );
 };
