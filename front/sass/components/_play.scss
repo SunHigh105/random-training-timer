@@ -1,0 +1,24 @@
+.p-play {
+  &__menu {
+    margin: 0.5em 0;
+    height: 35px;
+    text-align: center;
+    font-size: 35px;
+
+    &--next {
+      height: 35px;
+      font-size: 25px; 
+    }
+  }
+
+  &__description {
+    height: 50px;
+    font-size: 25px;
+  }
+
+  &__remaining-count {
+    margin: 10px 0 0;
+    height: 30px;
+    font-size: 25px;
+  }
+}

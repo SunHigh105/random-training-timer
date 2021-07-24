@@ -47,3 +47,31 @@ export const getAllCategories = async (optionConfig?: ApiConfig) => {
     return failedResponse;
   }
 };
+
+/**
+ * タイマーに渡すトレーニングリスト(シャッフルして休憩時間も加えたもの)を取得
+ */
+export const getTrainingListforTimer = async (
+  categoryId?: string,
+  totalTrainingTime?: number,
+  trainingTime?: number,
+  breakTime?: number,
+  optionConfig?: ApiConfig
+) => {
+  const instance = createAxiosInstance(optionConfig);
+  try {
+    const res = await instance.post(
+      '/api/get_training_list_for_timer',
+      {
+        category_id: categoryId,
+        total_training_time: totalTrainingTime,
+        training_time: trainingTime,
+        break_time: breakTime
+      }
+    );
+    return res.data;
+
+  } catch (e) {
+    return failedResponse;
+  }
+};

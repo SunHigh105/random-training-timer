@@ -43,10 +43,10 @@ export const App: FC<AppProps> = ({
           )
         }
       </Menu>
-      <Container text style={{ marginTop: '2em' }}>
+      <Container text style={{ marginTop: '1.5em' }}>
         <Switch>
           <Route path='/' exact component={HomeContainer} />
-          <Route path='/play/category/:categoryId/total/:totaiTrainingTime/per_time/:trainingTime/per_break/:breakTime' component={PlayContainer} />
+          <Route path='/play/category/:categoryId/total/:totalTrainingTime/per_time/:trainingTime/per_break/:breakTime' component={PlayContainer} />
           <Route path='/regist/trainings'>
             {!isLoggedIn ? <Redirect to="/signin" /> : <RegistTrainingsContaniner userId={user.user_id} />}
           </Route>
