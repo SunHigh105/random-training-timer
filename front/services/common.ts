@@ -2,13 +2,10 @@ import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 
 export interface ApiConfig {
-  baseURL: string;
   timeout: number;
 }
 
 const DEFAULT_API_CONFIG: ApiConfig = {
-  // baseURL: 'https://api.github.com',
-  baseURL: 'http://localhost', //process.env.APP_URL,
   timeout: 7000,
 };
 
