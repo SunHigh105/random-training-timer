@@ -21,3 +21,9 @@ export interface selectCategoryItem {
   value: number;
   text: string;
 };
+
+export interface TrainingMenuItem {
+  currentMenu: string;
+  description: string;
+  time: number;
+}
