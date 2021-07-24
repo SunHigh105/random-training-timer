@@ -10044,13 +10044,20 @@ h3 {
 
 .p-play__menu {
   margin: 0.5em 0;
+  height: 35px;
   text-align: center;
   font-size: 35px;
 }
 .p-play__menu--next {
+  height: 35px;
   font-size: 25px;
 }
 .p-play__description {
   height: 50px;
+  font-size: 25px;
+}
+.p-play__remaining-count {
+  margin: 10px 0 0;
+  height: 30px;
   font-size: 25px;
 }

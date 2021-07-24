@@ -3,22 +3,16 @@ import { useHistory, useParams } from "react-router";
 
 import { Play } from "../presentationals/pages/Play";
 import { getTrainingListforTimer } from '../../services/trainings';
-import { TrainingMenuItem } from "../../services/models";
-
-export interface playParams {
-  categoryId: string;
-  totalTrainingTime: string;
-  trainingTime: string;
-  breakTime: string;
-}
+import { PlayParams, CurrentTrainingInfoItem, TrainingMenuItem } from "../../services/models";
 
 export const PlayContainer: FC = () => {
-  const params = useParams<playParams>();
+  const params = useParams<PlayParams>();
   let history = useHistory();
 
   const [timer, setTimer] = useState('');
   const [circleDasharray, setCircleDasharray] = useState('');
-  const [currentTrainingInfo, setCurrentTrainingInfo] = useState({});
+  const [currentTrainingInfo, setCurrentTrainingInfo] = useState<CurrentTrainingInfoItem>();
+  const [remainingTrainingCount, setRemainingTrainingCount] = useState('');
 
   const TOTAL_TRAINING_TIME = Number(params.totalTrainingTime);
   const TRAINING_TIME = Number(params.trainingTime); // todo
@@ -41,7 +35,7 @@ export const PlayContainer: FC = () => {
       return;
     }
 
-    await playAllTrainings(response.trainings);
+    await playAllTrainings(response.trainings, response.totalTrainingCount);
   }
 
   const formatTime = (time: number) => {
@@ -76,33 +70,50 @@ export const PlayContainer: FC = () => {
     }, 1000);
   }
 
-  const playAllTrainings = async (trainingMenuList: Array<TrainingMenuItem>) => {
+  const playAllTrainings = async (
+    trainingMenuList: Array<TrainingMenuItem>,
+    totalTrainingCount: number,
+  ) => {
     // trainingMenuListをmapで回すとうまくいかず
+    let remainingCount = totalTrainingCount; // 残りのトレーニング数
     for (let i = 0; i < trainingMenuList.length; i++) {
+      //トレーニングの時だけ残りのトレーニング数を更新
+      if (i % 2 === 0) {
+        setRemainingTrainingCount(`${remainingCount} / ${totalTrainingCount}`);
+        remainingCount -= 1;
+      }
+      
+      // 現在のトレーニング情報を更新
       setCurrentTrainingInfo({
-        currentMenu: trainingMenuList[i].currentMenu,
+        currentMenu: `Now: ${trainingMenuList[i].currentMenu}`,
         description: trainingMenuList[i].description,
-        nextMenu: trainingMenuList[i + 1] ? trainingMenuList[i + 1].currentMenu : '',
+        nextMenu: trainingMenuList[i + 1] ? `Next: ${trainingMenuList[i + 1].currentMenu}` : '',
       });
+
       startTimer(trainingMenuList[i].time);
       await sleepTime((trainingMenuList[i].time + 1) * 1000);
     }
 
     // トレーニング後のメッセージ
+    setCurrentTrainingInfo({
+      currentMenu: '',
+      description: 'お疲れ様でした！',
+      nextMenu: '',
+    });
     setTimer('FINISH!');
+    setRemainingTrainingCount(`0 / ${totalTrainingCount}`);
   }
 
   useEffect(() => {
     getTrainingInfo();
   }, []);
 
-  
- 
   return (
     <Play 
       timer={timer}
       circleDasharray={circleDasharray}
       currentTrainingInfo={currentTrainingInfo}
+      remainingTrainingCount={remainingTrainingCount}
     />
   );
 };

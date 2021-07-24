@@ -1,24 +1,21 @@
 import React, {FC} from 'react';
 import { Header, Container } from 'semantic-ui-react';
 
-export interface playProps {
-  timer: string;
-  circleDasharray: string;
-  currentTrainingInfo: object;
-}
+import { PlayProps } from '../../../services/models';
 
-export const Play: FC<playProps> = ({
+export const Play: FC<PlayProps> = ({
   timer = '',
   circleDasharray = '',
   currentTrainingInfo = {},
+  remainingTrainingCount = 0,
 }) => (
   <div className='p-play'>
     <Header as='h2'>Training</Header>
-    <h3 className='p-play__menu'>Now: {currentTrainingInfo.currentMenu}</h3>
+    <h3 className='p-play__menu'>{currentTrainingInfo.currentMenu}</h3>
     <Container className='p-play__description' textAlign='center'>
       <p>{currentTrainingInfo.description}</p>
     </Container>
-    <h3 className='p-play__menu p-play__menu--next'>Next: {currentTrainingInfo.nextMenu}</h3>
+    <h3 className='p-play__menu p-play__menu--next'>{currentTrainingInfo.nextMenu}</h3>
     {/* cf. https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/ */}
     <div className="c-base-timer">
       <svg className="c-base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -41,5 +38,8 @@ export const Play: FC<playProps> = ({
         {timer}
       </span>
     </div>
+    <Container className='p-play__remaining-count' textAlign='center'>
+      <p>{remainingTrainingCount}</p>
+    </Container>
   </div>
 );
