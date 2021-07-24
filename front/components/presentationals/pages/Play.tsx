@@ -12,23 +12,22 @@ export const Play: FC<playProps> = ({
   circleDasharray = '',
   currentTrainingInfo = {},
 }) => (
-  <div>
+  <div className='p-play'>
     <Header as='h2'>Training</Header>
-    <Header as='h3' textAlign='center'>Now: {currentTrainingInfo.currentMenu}</Header>
-    <Container textAlign='center'>
+    <h3 className='p-play__menu'>Now: {currentTrainingInfo.currentMenu}</h3>
+    <Container className='p-play__description' textAlign='center'>
       <p>{currentTrainingInfo.description}</p>
     </Container>
-    <Header as='h3' textAlign='center'>Next: {currentTrainingInfo.nextMenu}</Header>
+    <h3 className='p-play__menu p-play__menu--next'>Next: {currentTrainingInfo.nextMenu}</h3>
     {/* cf. https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/ */}
-    <div className="base-timer">
-      <svg className="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <g className="base-timer__circle">
-          <circle className="base-timer__path-elapsed" cx="50" cy="50" r="45" />
+    <div className="c-base-timer">
+      <svg className="c-base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <circle cx="50" cy="50" r="45" />
         </g>
         <path
-          id="base-timer-path-remaining"
+          id="c-base-timer-path-remaining"
           strokeDasharray={circleDasharray}
-          className="base-timer__path-remaining"
           d="
             M 50, 50
             m -45, 0
@@ -37,7 +36,7 @@ export const Play: FC<playProps> = ({
           "
         ></path>
       </svg>
-      <span id="base-timer-label" className="base-timer__label">
+      <span id="c-base-timer-label" className="c-base-timer__label">
         {/* Remaining time label */}
         {timer}
       </span>

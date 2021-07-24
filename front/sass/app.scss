@@ -8,4 +8,6 @@
 @import '~bootstrap/scss/bootstrap';
 
 // base-time
-@import 'base-timer';
+@import './components/base-timer';
+
+@import './components/play';

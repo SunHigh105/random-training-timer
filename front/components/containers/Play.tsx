@@ -4,7 +4,6 @@ import { useHistory, useParams } from "react-router";
 import { Play, playProps } from "../presentationals/pages/Play";
 import { getCategoryAndTrainings } from '../../services/trainings';
 import { Training } from "../../services/models";
-import { ItemMeta } from "semantic-ui-react";
 
 export interface playParams {
   categoryId: string;
@@ -48,7 +47,7 @@ export const PlayContainer: FC = () => {
     // 休憩時間を含めたリストを作成
     shuffleTrainingsSort(response.trainings).map((item: Training, i: number) => {
       if (i === 0) {
-        menuList.push({currentMenu: '開始前', description: '', time: 3});
+        menuList.push({currentMenu: '開始前', description: '', time: 5});
       }
       menuList.push({currentMenu: item.name, description: item.description, time: TRAINING_TIME});
       if (i !== response.trainings.length - 1) {
@@ -85,6 +84,7 @@ export const PlayContainer: FC = () => {
       
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
+        setCircleDasharrayOnTimer(trainingTime, trainingTime);
       }
     }, 1000);
   }
