@@ -25,7 +25,7 @@ export const App: FC<AppProps> = ({
       <Menu 
         as={Menu}
       >
-        <Menu.Item header as={Link} to='/'>Random Training</Menu.Item>
+        <Menu.Item header as={Link} to='/'>Random Training Timer</Menu.Item>
         { isLoggedIn ?
           (
             <Menu.Menu position='right'>
@@ -39,7 +39,8 @@ export const App: FC<AppProps> = ({
           (
             <Menu.Menu position='right'>
               <Menu.Item as={Link} to='/signin'>Signin</Menu.Item>
-              <Menu.Item as={Link} to='/signup'>Signup</Menu.Item>
+              {/* 未実装 */}
+              {/* <Menu.Item as={Link} to='/signup'>Signup</Menu.Item> */}
             </Menu.Menu>
           )
         }

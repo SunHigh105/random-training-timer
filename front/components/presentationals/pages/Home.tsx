@@ -16,7 +16,7 @@ export const Home: FC<homeProps> = ({
   handlePlay = () => {},
 }) => (
   <div>
-    <Header as='h2'>Random Training Playlis</Header>
+    <Header as='h2'>Random Training Timer</Header>
     <Container>
       <Form onSubmit={handlePlay}>
         <Form.Field>
@@ -58,6 +58,7 @@ export const Home: FC<homeProps> = ({
         </Form.Field>
         <Form.Field>
           <Button type='submit' content='Training Start!' primary />
+          {/* todo: 全フォーム埋まったらボタンを活性化 */}
           {/* {isActive ? 
             <Button content='Training Start!' primary />
             :
