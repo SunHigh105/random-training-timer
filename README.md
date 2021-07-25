@@ -1,5 +1,9 @@
 # Bulletin Board App
 
+## App URL
+* heroku
+  * https://fast-gorge-86686.herokuapp.com/
+
 ## Requirements
 * Node.js
 * Composer
@@ -34,4 +38,5 @@ $ docker-compose down
 
 * You can access http://localhost
 
-## [WIP] Deployment for Production
+## Deployment for Production
+* [Deployment heroku](https://github.com/SunHigh105/random-training-timer/blob/develop/README/deployment_heroku.md)
