@@ -1,4 +1,4 @@
-# Bulletin Board App
+# Random Training Timer
 
 ## App URL
 * heroku
