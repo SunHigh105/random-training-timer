@@ -12,9 +12,9 @@ export const DetailTrainingContaniner: FC<DetailTrainingContainerProps> = ({
   isLoggedIn = false,
   userId = '',
 }) => {
-  const params = useParams();
-  const [category, setCategory] = useState({});
-  const [trainings, setTrainings] = useState([]);
+  const params = useParams<{categoryId: string}>();
+  const [category, setCategory] = useState({id: 0, name: ''});
+  const [trainings, setTrainings] = useState<Array<{id: number; name: string; category_id: number; description: string;}>>([]);
   let history = useHistory();
 
   const getTrainingInfo = async () => {

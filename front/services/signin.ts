@@ -41,8 +41,8 @@ export const logout = async (optionConfig?: ApiConfig) => {
     if (res.status !== 200) {
       throw new Error();
     }
-    return res;
+    return { status: res.status, isError: false };
   } catch (e) {
-    return { isError: true };
+    return { status: 500, isError: true };
   }
 }

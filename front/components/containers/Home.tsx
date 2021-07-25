@@ -2,19 +2,19 @@ import React, { FC, useEffect, useState } from "react";
 import { Home } from "../presentationals/pages/Home";
 
 import { getAllCategories } from "../../services/trainings";
-import { Category, selectCategoryItem } from "../../services/models";
+import { Category, SelectCategoryItem, TrainingInfo } from "../../services/models";
 import { trainingInfoItems } from '../../constants/home';
 import { useHistory } from "react-router";
 
 export const HomeContainer: FC = () => {
-  const [categories, setCategories] = useState([]);
-  const [trainingInfo, setTrainingInfo] = useState({});
+  const [categories, setCategories] = useState<Array<SelectCategoryItem>>([]);
+  const [trainingInfo, setTrainingInfo] = useState<Partial<TrainingInfo>>({});
   let history = useHistory();
 
   const getAllCategoriesInfo = async () => {
     const response = await getAllCategories();
     response.map((item: Category) => {
-      setCategories((prevValue: Array<selectCategoryItem>) => (
+      setCategories((prevValue: Array<SelectCategoryItem>) => (
         [
           ...prevValue,
           {

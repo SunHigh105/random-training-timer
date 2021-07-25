@@ -11,7 +11,7 @@ export const PlayContainer: FC = () => {
 
   const [timer, setTimer] = useState('');
   const [circleDasharray, setCircleDasharray] = useState('');
-  const [currentTrainingInfo, setCurrentTrainingInfo] = useState<CurrentTrainingInfoItem>();
+  const [currentTrainingInfo, setCurrentTrainingInfo] = useState<Partial<CurrentTrainingInfoItem>>({});
   const [remainingTrainingCount, setRemainingTrainingCount] = useState('');
 
   const TOTAL_TRAINING_TIME = Number(params.totalTrainingTime);
@@ -53,11 +53,12 @@ export const PlayContainer: FC = () => {
   }
 
   const startTimer = (trainingTime: number) => {
-    let timerInterval = null;
+    // let timerInterval: NodeJS.Timeout | null;
+    // timerInterval = null;
     let timePassed = 0;
     let timeLeft = trainingTime;
 
-    timerInterval = setInterval(() => {
+    let timerInterval = setInterval(() => {
       timePassed += 1;
       timeLeft = trainingTime - timePassed;
       setTimer(formatTime(timeLeft));

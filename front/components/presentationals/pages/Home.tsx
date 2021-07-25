@@ -2,10 +2,10 @@ import React, {FC} from 'react';
 import { Header, Container, Select, Form, Grid, Button } from 'semantic-ui-react';
 
 import * as settings from '../../../constants/home';
-import { selectCategoryItem } from '../../../services/models';
+import { SelectCategoryItem } from '../../../services/models';
 
 export interface homeProps {
-  categories: Array<selectCategoryItem>;
+  categories: Array<SelectCategoryItem>;
   handleTrainingInfo: (key: string, value: number) => void;
   handlePlay: () => void;
 }

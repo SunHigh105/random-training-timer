@@ -16,7 +16,14 @@ export interface Training {
   description: string;
 }
 
-export interface selectCategoryItem {
+export interface TrainingInfo {
+  categoryId: number;
+  totalTrainingTime: number;
+  trainingTime: number;
+  breakTime: number;
+}
+
+export interface SelectCategoryItem {
   key: number;
   value: number;
   text: string;
@@ -38,14 +45,12 @@ export interface PlayParams {
 export interface PlayProps {
   timer: string;
   circleDasharray: string;
-  currentTrainingInfo: CurrentTrainingInfoItem;
+  currentTrainingInfo: Partial<CurrentTrainingInfoItem>;
   remainingTrainingCount: string;
 }
 
 export interface CurrentTrainingInfoItem {
-  currentMenu: string;
+  currentMenu: string | undefined;
   description: string;
   nextMenu: string;
 }
-
-

@@ -3,7 +3,7 @@ import { Header, Container, Form, Button, Item, } from 'semantic-ui-react';
 import { Training } from '../../../services/models';
 
 export interface DetailTrainingProps {
-  category?: object,
+  category?: {name: string},
   trainings?: Array<Training>,
   isLoggedIn?: boolean,
   userId?: number | string

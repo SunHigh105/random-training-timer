@@ -6,8 +6,9 @@ import { PlayContainer } from './containers/Play';
 import { MyPage } from './presentationals/pages/MyPage';
 import { SigninContainer } from '../components/containers/Signin';
 import { Signup } from './presentationals/pages/Signup';
-import { RegistTrainingsContaniner } from './containers/RegistTrainings';
+// import { RegistTrainingsContaniner } from './containers/RegistTrainings';
 import { DetailTrainingContaniner } from './containers/DetailTraining';
+import { RegistTrainings } from './presentationals/pages/RegistTrainings';
 
 export interface AppProps {
   user?: { user_id: string, name: string },
@@ -48,7 +49,8 @@ export const App: FC<AppProps> = ({
           <Route path='/' exact component={HomeContainer} />
           <Route path='/play/category/:categoryId/total/:totalTrainingTime/per_time/:trainingTime/per_break/:breakTime' component={PlayContainer} />
           <Route path='/regist/trainings'>
-            {!isLoggedIn ? <Redirect to="/signin" /> : <RegistTrainingsContaniner userId={user.user_id} />}
+            {/* {!isLoggedIn ? <Redirect to="/signin" /> : <RegistTrainingsContaniner userId={user.user_id} />} */}
+            <RegistTrainings />
           </Route>
           <Route path='/detail/training/:categoryId'>
             <DetailTrainingContaniner isLoggedIn={isLoggedIn} userId={user.user_id} />

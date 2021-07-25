@@ -4,7 +4,11 @@ import { Category, Training } from './models';
 const succeededResponse = { isSucceeded: true };
 const failedResponse = { isSucceeded: false };
 
-export const registCategory = async (category?: Category) => {
+export const registCategory = async (category?: {
+  name: string;
+  user_id: string | number | null;
+  is_public: boolean;
+}) => {
   const instance = createAxiosInstance();
 
   try {
@@ -15,7 +19,7 @@ export const registCategory = async (category?: Category) => {
   }
 };
 
-export const registTrainings = async (trainings?: Array<Training>) => {
+export const registTrainings = async (trainings?: Array<{name: string, description: string}>) => {
   const instance = createAxiosInstance();
 
   try {
