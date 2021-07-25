@@ -15,7 +15,7 @@ export const PlayContainer: FC = () => {
   const [remainingTrainingCount, setRemainingTrainingCount] = useState('');
 
   const TOTAL_TRAINING_TIME = Number(params.totalTrainingTime);
-  const TRAINING_TIME = Number(params.trainingTime); // todo
+  const TRAINING_TIME = Number(params.trainingTime);
   const BREAK_TIME = Number(params.breakTime);
   const FULL_DASH_ARRAY = 283;
 
@@ -53,8 +53,6 @@ export const PlayContainer: FC = () => {
   }
 
   const startTimer = (trainingTime: number) => {
-    // let timerInterval: NodeJS.Timeout | null;
-    // timerInterval = null;
     let timePassed = 0;
     let timeLeft = trainingTime;
 
@@ -75,13 +73,22 @@ export const PlayContainer: FC = () => {
     trainingMenuList: Array<TrainingMenuItem>,
     totalTrainingCount: number,
   ) => {
-    // trainingMenuListをmapで回すとうまくいかず
+    const trainingRing = document.getElementById('training_ring');
+    const breakRing = document.getElementById('break_ring');
     let remainingCount = totalTrainingCount; // 残りのトレーニング数
+
+    // trainingMenuListをmapで回すとうまくいかず
     for (let i = 0; i < trainingMenuList.length; i++) {
-      //トレーニングの時だけ残りのトレーニング数を更新
+      // 休憩開始直後に残りのトレーニング数を更新
       if (i % 2 === 0) {
         setRemainingTrainingCount(`${remainingCount} / ${totalTrainingCount}`);
         remainingCount -= 1;
+
+        trainingRing!.setAttribute('aria-hidden', 'true');
+        breakRing!.setAttribute('aria-hidden', 'false');
+      } else {
+        trainingRing!.setAttribute('aria-hidden', 'false');
+        breakRing!.setAttribute('aria-hidden', 'true');
       }
       
       // 現在のトレーニング情報を更新

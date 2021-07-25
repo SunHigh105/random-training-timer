@@ -10031,6 +10031,12 @@ h3 {
   stroke: #21ba45;
   fill: #fff;
 }
+.c-base-timer__svg > path:last-child {
+  stroke: #f7b5c0;
+}
+.c-base-timer__svg > path[aria-hidden=true] {
+  display: none;
+}
 .c-base-timer__label {
   position: absolute;
   width: 400px;

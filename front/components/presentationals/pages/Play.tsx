@@ -23,7 +23,19 @@ export const Play: FC<PlayProps> = ({
           <circle cx="50" cy="50" r="45" />
         </g>
         <path
-          id="c-base-timer-path-remaining"
+          id="training_ring"
+          aria-hidden="true"
+          strokeDasharray={circleDasharray}
+          d="
+            M 50, 50
+            m -45, 0
+            a 45,45 0 1,0 90,0
+            a 45,45 0 1,0 -90,0
+          "
+        ></path>
+        <path
+          id="break_ring"
+          aria-hidden="false"
           strokeDasharray={circleDasharray}
           d="
             M 50, 50
