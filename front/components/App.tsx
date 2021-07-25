@@ -6,9 +6,8 @@ import { PlayContainer } from './containers/Play';
 import { MyPage } from './presentationals/pages/MyPage';
 import { SigninContainer } from '../components/containers/Signin';
 import { Signup } from './presentationals/pages/Signup';
-// import { RegistTrainingsContaniner } from './containers/RegistTrainings';
+import { RegistTrainingsContaniner } from './containers/RegistTrainings';
 import { DetailTrainingContaniner } from './containers/DetailTraining';
-import { RegistTrainings } from './presentationals/pages/RegistTrainings';
 
 export interface AppProps {
   user?: { user_id: string, name: string },
@@ -26,12 +25,13 @@ export const App: FC<AppProps> = ({
       <Menu 
         as={Menu}
       >
-        <Menu.Item header as={Link} to='/'>Random Training</Menu.Item>
+        <Menu.Item header as={Link} to='/'>Random Training Timer</Menu.Item>
         { isLoggedIn ?
           (
             <Menu.Menu position='right'>
               <Menu.Item as={Link} to='/regist/trainings'>Regist</Menu.Item>
-              <Menu.Item as={Link} to='/mypage'>MyPage</Menu.Item>
+              {/* 未実装 */}
+              {/* <Menu.Item as={Link} to='/mypage'>MyPage</Menu.Item> */}
               <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
             </Menu.Menu>
           )
@@ -39,7 +39,8 @@ export const App: FC<AppProps> = ({
           (
             <Menu.Menu position='right'>
               <Menu.Item as={Link} to='/signin'>Signin</Menu.Item>
-              <Menu.Item as={Link} to='/signup'>Signup</Menu.Item>
+              {/* 未実装 */}
+              {/* <Menu.Item as={Link} to='/signup'>Signup</Menu.Item> */}
             </Menu.Menu>
           )
         }
@@ -49,8 +50,7 @@ export const App: FC<AppProps> = ({
           <Route path='/' exact component={HomeContainer} />
           <Route path='/play/category/:categoryId/total/:totalTrainingTime/per_time/:trainingTime/per_break/:breakTime' component={PlayContainer} />
           <Route path='/regist/trainings'>
-            {/* {!isLoggedIn ? <Redirect to="/signin" /> : <RegistTrainingsContaniner userId={user.user_id} />} */}
-            <RegistTrainings />
+            {isLoggedIn ? <RegistTrainingsContaniner userId={user.user_id} /> : <Redirect to="/signin" />}
           </Route>
           <Route path='/detail/training/:categoryId'>
             <DetailTrainingContaniner isLoggedIn={isLoggedIn} userId={user.user_id} />
