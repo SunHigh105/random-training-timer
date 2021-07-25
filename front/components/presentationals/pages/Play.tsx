@@ -5,7 +5,8 @@ import { PlayProps } from '../../../services/models';
 
 export const Play: FC<PlayProps> = ({
   timer = '',
-  circleDasharray = '',
+  trainingRingDasharray = '',
+  breakRingDasharray = '',
   currentTrainingInfo = {},
   remainingTrainingCount = 0,
 }) => (
@@ -23,8 +24,20 @@ export const Play: FC<PlayProps> = ({
           <circle cx="50" cy="50" r="45" />
         </g>
         <path
-          id="c-base-timer-path-remaining"
-          strokeDasharray={circleDasharray}
+          id="training_ring"
+          aria-hidden="true"
+          strokeDasharray={trainingRingDasharray}
+          d="
+            M 50, 50
+            m -45, 0
+            a 45,45 0 1,0 90,0
+            a 45,45 0 1,0 -90,0
+          "
+        ></path>
+        <path
+          id="break_ring"
+          aria-hidden="false"
+          strokeDasharray={breakRingDasharray}
           d="
             M 50, 50
             m -45, 0
@@ -34,7 +47,6 @@ export const Play: FC<PlayProps> = ({
         ></path>
       </svg>
       <span id="c-base-timer-label" className="c-base-timer__label">
-        {/* Remaining time label */}
         {timer}
       </span>
     </div>

@@ -27,7 +27,15 @@ $timer-diameter: 400px;
       transform-origin: center;
       transition: 1s linear all;
       stroke: #21ba45;
-      fill: #fff;
+      fill: none;
+
+      &:last-child {
+        stroke: rgb(247, 181, 192);
+      }
+
+      &[aria-hidden="true"] {
+        display: none;
+      }
     }
   }
 

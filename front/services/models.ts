@@ -44,7 +44,8 @@ export interface PlayParams {
 
 export interface PlayProps {
   timer: string;
-  circleDasharray: string;
+  trainingRingDasharray: string;
+  breakRingDasharray: string;
   currentTrainingInfo: Partial<CurrentTrainingInfoItem>;
   remainingTrainingCount: string;
 }
