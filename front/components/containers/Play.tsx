@@ -27,6 +27,7 @@ export const PlayContainer: FC = () => {
   const sleepTime = (ms: number) => new Promise(res => setTimeout(res, ms));
 
   const [timer, setTimer] = useState(formatTime(5));
+  const [categoryName, setCategoryName] = useState('');
   const [currentTrainingInfo, setCurrentTrainingInfo] = useState<Partial<CurrentTrainingInfoItem>>({});
   const [remainingTrainingCount, setRemainingTrainingCount] = useState('');
   const [trainingRingDasharray, setTrainingRingDashArray] = useState(String(FULL_DASH_ARRAY));
@@ -40,11 +41,16 @@ export const PlayContainer: FC = () => {
       BREAK_TIME,
     );
 
+    console.log(response);
+
     // 未登録のカテゴリIDがきたらホーム画面に移動
     if(response.category.length === 0) {
       history.push('/');
       return;
     }
+
+    // カテゴリ名を取得
+    setCategoryName(response.category[0].name);
 
     await playAllTrainings(response.trainings, response.totalTrainingCount);
   }
@@ -133,6 +139,7 @@ export const PlayContainer: FC = () => {
 
   return (
     <Play 
+      categoryName={categoryName}
       timer={timer}
       trainingRingDasharray={trainingRingDasharray}
       breakRingDasharray={breakRingDasharray}

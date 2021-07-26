@@ -25,16 +25,18 @@ export const Home: FC<homeProps> = ({
     <Container>
       <Card.Group>
         {categories.map((category: SelectCategoryItem) => (
-          <Card key={category.key}>
+          <Card key={category.id}>
             <Card.Content>
-              <Card.Header>{category.text}</Card.Header>
+              <Card.Header>{category.name}</Card.Header>
+              <Card.Meta>{category.userName}</Card.Meta>
+              <Card.Description>{category.trainings}</Card.Description>
             </Card.Content>
             <Card.Content>
               <Modal
                 onClose={handleModalOpen}
                 onOpen={handleModalOpen}
                 open={isModalOpen}
-                trigger={<Button onClick={() => handleTrainingInfo('categoryId', category.value)}>Setting</Button>}
+                trigger={<Button onClick={() => handleTrainingInfo('categoryId', category.id)}>Setting</Button>}
               >
                 <Modal.Header>Training Setting</Modal.Header>
                 <Modal.Content>

@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Home } from "../presentationals/pages/Home";
 
 import { getAllCategories } from "../../services/trainings";
-import { Category, SelectCategoryItem, TrainingInfo } from "../../services/models";
+import { AllCategoriesInfo, SelectCategoryItem, TrainingInfo } from "../../services/models";
 import { trainingInfoItems } from '../../constants/home';
 import { useHistory } from "react-router";
 
@@ -12,16 +12,20 @@ export const HomeContainer: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   let history = useHistory();
 
+  
+
   const getAllCategoriesInfo = async () => {
     const response = await getAllCategories();
-    response.map((item: Category) => {
+    console.log(response);
+    response.map((item: AllCategoriesInfo) => {
       setCategories((prevValue: Array<SelectCategoryItem>) => (
         [
           ...prevValue,
           {
-            key: item.id,
-            value: item.id,
-            text: item.name,
+            id: item.category.id,
+            name: item.category.name,
+            userName: item.userName[0].name,
+            trainings: item.trainings[0].name,
           }
         ]
       ));

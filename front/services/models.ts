@@ -10,6 +10,16 @@ export interface Category {
   is_public: boolean;
 }
 
+export interface Name {
+  name: string;
+}
+
+export interface AllCategoriesInfo {
+  category: Category;
+  userName: Array<Name>;
+  trainings: Array<Name>;
+}
+
 export interface Training {
   name: string;
   category_id: number;
@@ -24,9 +34,10 @@ export interface TrainingInfo {
 }
 
 export interface SelectCategoryItem {
-  key: number;
-  value: number;
-  text: string;
+  id: number;
+  name: string;
+  userName: string;
+  trainings: string;
 };
 
 export interface TrainingMenuItem {
@@ -43,6 +54,7 @@ export interface PlayParams {
 }
 
 export interface PlayProps {
+  categoryName: string;
   timer: string;
   trainingRingDasharray: string;
   breakRingDasharray: string;
