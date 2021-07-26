@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 export const HomeContainer: FC = () => {
   const [categories, setCategories] = useState<Array<SelectCategoryItem>>([]);
   const [trainingInfo, setTrainingInfo] = useState<Partial<TrainingInfo>>({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
   let history = useHistory();
 
   const getAllCategoriesInfo = async () => {
@@ -51,11 +52,17 @@ export const HomeContainer: FC = () => {
     history.push(`/play/category/${trainingInfo.categoryId}/total/${trainingInfo.totalTrainingTime}/per_time/${trainingInfo.trainingTime}/per_break/${trainingInfo.breakTime}`);
   };
 
+  const handleModalOpen = () => {
+    setIsModalOpen(!isModalOpen);
+  }
+
   return (
     <Home
       categories={categories}
       handleTrainingInfo={handleTrainingInfo}
       handlePlay={handlePlay}
+      isModalOpen={isModalOpen}
+      handleModalOpen={handleModalOpen}
     />
   );
 };
