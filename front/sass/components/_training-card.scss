@@ -1,4 +1,5 @@
 .c-training-card {
+  &__header,
   &__description {
     overflow: hidden;
     text-overflow: ellipsis;

@@ -18,7 +18,7 @@ export const RegistTrainings: FC<RegistTrainingsProps> = ({
       <Form onSubmit={(e: React.SyntheticEvent) => handleRegist(e)}>
         <Form.Field>
           <label>Category Name</label>
-          <input type="text" name="category_name" />
+          <input type="text" name="category_name" maxLength={30} />
         </Form.Field>
         {/* todo: 公開設定 */}
         {/* <Form.Field>          
@@ -34,10 +34,10 @@ export const RegistTrainings: FC<RegistTrainingsProps> = ({
             <div key={i} className="two fields">
               <label>{ i + 1 }</label>
               <div className="field">
-                <input type="text" name={`training_name_${i + 1}`} placeholder="Name"/>
+                <input type="text" name={`training_name_${i + 1}`} placeholder="Name" maxLength={30} />
               </div>
               <div className="field">
-                <input type="text" name={`training_description_${i + 1}`} placeholder="Description"/>
+                <input type="text" name={`training_description_${i + 1}`} placeholder="Description" maxLength={50} />
               </div>
               {/* todo: 不要なトレーニング消すボタン */}
               {/* <span>×</span> */}

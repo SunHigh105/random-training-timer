@@ -18,7 +18,7 @@ export const Home: FC<homeProps> = ({
         {categories.map((category: SelectCategoryItem) => (
           <Card key={category.id}>
             <Card.Content className="c-training-card">
-              <Card.Header>{category.name}</Card.Header>
+              <Card.Header className="c-training-card__header">{category.name}</Card.Header>
               <Card.Meta>{category.userName}</Card.Meta>
               <Card.Description className="c-training-card__description">{category.trainings}</Card.Description>
             </Card.Content>
