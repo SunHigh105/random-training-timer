@@ -4,10 +4,9 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
 // base-time
 @import './components/base-timer';
 
 @import './components/play';
+
+@import './components/training-card';

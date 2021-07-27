@@ -1,7 +1,14 @@
 .p-play {
-  &__menu {
-    margin: 0.5em 0;
+  &__header {
     height: 35px;
+    font-size: 25px; 
+    overflow: hidden;
+  }
+
+  &__menu {
+    margin: 10px 0;
+    height: 40px;
+    overflow: hidden;
     text-align: center;
     font-size: 35px;
 
@@ -12,7 +19,7 @@
   }
 
   &__description {
-    height: 50px;
+    height: 70px;
     font-size: 25px;
   }
 

@@ -4,6 +4,7 @@ import { Header, Container } from 'semantic-ui-react';
 import { PlayProps } from '../../../services/models';
 
 export const Play: FC<PlayProps> = ({
+  categoryName = '',
   timer = '',
   trainingRingDasharray = '',
   breakRingDasharray = '',
@@ -11,7 +12,7 @@ export const Play: FC<PlayProps> = ({
   remainingTrainingCount = 0,
 }) => (
   <div className='p-play'>
-    <Header as='h2'>Training</Header>
+    <Header as='h2' className='p-play__header'>{categoryName}</Header>
     <h3 className='p-play__menu'>{currentTrainingInfo.currentMenu}</h3>
     <Container className='p-play__description' textAlign='center'>
       <p>{currentTrainingInfo.description}</p>
