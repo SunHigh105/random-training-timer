@@ -17,7 +17,7 @@ export interface Name {
 export interface AllCategoriesInfo {
   category: Category;
   userName: Array<Name>;
-  trainings: Array<Name>;
+  trainings: Array<string>;
 }
 
 export interface Training {

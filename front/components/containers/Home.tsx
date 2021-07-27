@@ -12,8 +12,6 @@ export const HomeContainer: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   let history = useHistory();
 
-  
-
   const getAllCategoriesInfo = async () => {
     const response = await getAllCategories();
     console.log(response);
@@ -25,7 +23,7 @@ export const HomeContainer: FC = () => {
             id: item.category.id,
             name: item.category.name,
             userName: item.userName[0].name,
-            trainings: item.trainings[0].name,
+            trainings: item.trainings.join(', '),
           }
         ]
       ));
@@ -52,7 +50,7 @@ export const HomeContainer: FC = () => {
       alert('Please select all items');
       return;
     }
-  
+
     history.push(`/play/category/${trainingInfo.categoryId}/total/${trainingInfo.totalTrainingTime}/per_time/${trainingInfo.trainingTime}/per_break/${trainingInfo.breakTime}`);
   };
 
@@ -63,6 +61,7 @@ export const HomeContainer: FC = () => {
   return (
     <Home
       categories={categories}
+      trainingInfo={trainingInfo}
       handleTrainingInfo={handleTrainingInfo}
       handlePlay={handlePlay}
       isModalOpen={isModalOpen}

@@ -62,3 +62,9 @@
   height: 30px;
   font-size: 25px;
 }
+
+.c-training-card__description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

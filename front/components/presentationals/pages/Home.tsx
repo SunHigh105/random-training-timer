@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
 import { Header, Container, Select, Form, Grid, Button, Card, Modal } from 'semantic-ui-react';
 
-import { SelectCategoryItem } from '../../../services/models';
+import { SelectCategoryItem, TrainingInfo } from '../../../services/models';
 import * as settings from '../../../constants/home';
 
 
 export interface homeProps {
   categories: Array<SelectCategoryItem>;
+  trainingInfo: Partial<TrainingInfo>
   handleTrainingInfo: (key: string, value: number) => void;
   handlePlay: () => void;
   isModalOpen: boolean;
@@ -15,6 +16,7 @@ export interface homeProps {
 
 export const Home: FC<homeProps> = ({
   categories = [],
+  trainingInfo = {},
   handleTrainingInfo = () => {},
   handlePlay = () => {},
   isModalOpen =  false,
@@ -26,10 +28,10 @@ export const Home: FC<homeProps> = ({
       <Card.Group>
         {categories.map((category: SelectCategoryItem) => (
           <Card key={category.id}>
-            <Card.Content>
+            <Card.Content className="c-training-card">
               <Card.Header>{category.name}</Card.Header>
               <Card.Meta>{category.userName}</Card.Meta>
-              <Card.Description>{category.trainings}</Card.Description>
+              <Card.Description className="c-training-card__description">{category.trainings}</Card.Description>
             </Card.Content>
             <Card.Content>
               <Modal
