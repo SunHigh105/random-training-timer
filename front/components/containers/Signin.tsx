@@ -14,7 +14,7 @@ export const SigninContainer: FC = () => {
   
   const handleSignin = async (e: FormEvent<HTMLFormElement>) => {
     const res = await signin(values);
-    console.log(res);
+    // console.log(res);
     if (res.isError) {
       alert('Login Failed.');
       return;

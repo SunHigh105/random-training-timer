@@ -41,8 +41,6 @@ export const PlayContainer: FC = () => {
       BREAK_TIME,
     );
 
-    console.log(response);
-
     // 未登録のカテゴリIDがきたらホーム画面に移動
     if(response.category.length === 0) {
       history.push('/');
