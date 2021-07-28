@@ -32,7 +32,10 @@
 
 ## ログイン
 * 登録されたメールアドレスとパスワードでログインできます
-* ※現在ユーザ登録機能は未実装です
+* ※現在ユーザ登録機能は未実装です 以下のいずれかのアカウント(Email, Password)をお使いください
+  * `test_user_cow@gmail.com`, cowtest
+  * `test_user_pig@gmail.com`, pigtest
+  * `test_user_chicken@gmail.com`, chickentest
 
 ## トレーニング登録
 * ログイン時のみトレーニング登録できます。画面右上の「Regist」を押すと登録画面を表示できます
