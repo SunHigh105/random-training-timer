@@ -1,0 +1,77 @@
+FORMAT: 1A
+
+HOST: http://localhost
+
+# Random Training API
+
+## GET /api/training/{id}
+
++ Parameters
+
+  + id: 1 (number)
+
++ Response 200 (application/json)
+
+  + Body
+
+    {
+      id: 1,
+      name: 'スクワット',
+      description: '膝が爪先より前に出ない',
+    }
+  
+
+## GET /api/trainings_per_category/{id}
+
++ Parameters
+
+  + id: 1 (number)
+
++ Response 200 (application/json)
+
+  + Body
+
+    {
+      category: {
+        id: 1,
+        name: '脚',
+      },
+      trainings: [
+        {
+          id: 1,
+          name: 'スクワット',
+          description: '膝が爪先より前に出ない', 
+        },
+        ...
+      ]
+    }
+
+## GET /api/random_training_menu/category_ids/{ids}/total/{total}/time/{time}/break/{break}
+
++ Parameters
+
+  + ids: 1,2 (string) - Comma separated
+
+  + total: 3 (number) - Total Traing Time(minute)
+
+  + time: 30 (number) - Per Training Time(seconds)
+
+  + break: 10 (number) - Per Break Time(seconds)
+
++ Response 200 (application/json)
+
+  + Body
+
+    [
+      {
+        id: 1,
+        name: 'スクワット',
+        description: '膝が爪先より前に出ない',
+      },
+      {
+        id: 2,
+        name: '高速もも上げ',
+        description: '太ももが床と平行になるまで上げる',
+      },
+      ...
+    ]
