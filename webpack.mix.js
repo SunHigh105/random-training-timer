@@ -11,6 +11,6 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.ts('front/components/index.tsx', 'public/js')
-    .react()
-    .sass('front/sass/app.scss', 'public/css');
+// mix.ts('front/components/index.tsx', 'public/js')
+//     .react()
+//     .sass('front/sass/app.scss', 'public/css');
