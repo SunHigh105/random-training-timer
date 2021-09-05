@@ -65,22 +65,18 @@ class TrainingController extends Controller
 
     public function getAllCategories()
     {
-        $categories = DB::table('categories')->where('is_public', true)->get();
-        // ユーザ名とトレーニング名を合体
-        $result_categories = [];
-        foreach($categories as $category) {
-            $trainings = DB::table('trainings')->select('name')->where('category_id', $category->id)->get();
-            $training_names = [];
-            foreach($trainings as $training) {
-                array_push($training_names, $training->name);
-            }
-            array_push($result_categories, [
-                'category' => $category,
-                'user_name' => DB::table('users')->select('name')->where('id', $category->user_id)->get(),
-                'trainings' => $training_names,
-            ]);
+        $categories = DB::table('categories')->get();
+        return response()->json($categories);
+    }
+
+    public function getTrainingsPerCategory(Request $request)
+    {
+        $training_ids = DB::table('categories_trainings')->where('category_id', $request->id)->get('training_id');
+        $trainings = [];
+        foreach($training_ids as $item) {
+            array_push($trainings, DB::table('trainings')->where('id', $item->training_id)->get());
         }
-        return response()->json($result_categories);
+        return response()->json($trainings);
     }
 
     /**

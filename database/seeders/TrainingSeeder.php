@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TrainingSheeder extends Seeder
+class TrainingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,19 +15,32 @@ class TrainingSheeder extends Seeder
     public function run()
     {
         $training_list = [
+            'クロスクランチ' => '',
+            'バイシクルクランチ' => '',
+            'プランク' => '',
+            'プランクひねり' => '',	
+            'モモ上げ' => '',	
+            'モモ下クラップ' => '',	
             'スクワット' => '膝が爪先より前に出ないように',
-            'ランジ' => '足を曲げる時は直角に',
-            'クロスクランチ' => '腹筋にも効くわよ',
+            'ワイドスクワット' => '',
             'マウンテンクライム' => '足を胸までちゃんと寄せる',
+            'スパイダー' => '',	
+            'ツイスト' => '',
+            'ペダル漕ぎ' => '',
+            'サイドスクワット' => '',
+            'ボート' => '',
+            'ランジ' => '足を曲げる時は直角に',
+            '脚パカ' => '',
+            '前パンチ' => '',
+            '上パンチ' => '',
+            '下パンチ' => '',
         ];
 
         foreach($training_list as $training => $description) {
             DB::table('trainings')->insert([
                 'name' => $training,
                 'description' => $description,
-                'category_id' => 1,
                 'created_at' => date(config('constants.TIME_STAMP_FORMAT')),
-                'updated_at' => date(config('constants.TIME_STAMP_FORMAT')),    
             ]);
         }
     }

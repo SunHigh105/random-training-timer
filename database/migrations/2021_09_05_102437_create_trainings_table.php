@@ -17,8 +17,7 @@ class CreateTrainingsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->default('');
-            $table->integer('category_id');
-            $table->timestamps();
+            $table->string('created_at');
         });
     }
 
