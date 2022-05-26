@@ -19,13 +19,13 @@ class CategorySeeder extends Seeder
             '背筋',
             '脚',
             '二の腕',
-            '有酸素',
-            'ストレッチ'
+            'お尻',
         ];
         foreach($category_list as $category) {
             DB::table('categories')->insert([
                 'name' => $category,
                 'created_at' => date(config('constants.TIME_STAMP_FORMAT')),
+                'updated_at' => date(config('constants.TIME_STAMP_FORMAT'))
             ]);    
         }
     }
